@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: mongo-urlshortener
+    restart: unless-stopped
+    ports:
+      - "27017:27017"   # expõe a porta padrão do Mongo no host
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: urlshortenerdb
+    volumes:
+      - mongo_data:/data/db  # persiste dados no volume
+
+volumes:
+  mongo_data:
