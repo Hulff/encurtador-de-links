@@ -6,13 +6,28 @@ services:
     container_name: mongo-urlshortener
     restart: unless-stopped
     ports:
-      - "27017:27017"   # expõe a porta padrão do Mongo no host
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
       MONGO_INITDB_DATABASE: urlshortenerdb
     volumes:
-      - mongo_data:/data/db  # persiste dados no volume
+      - mongo_data:/data/db
+
+  app:
+    container_name: nest-urlshortener
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run start:prod
+    environment:
+      NODE_ENV: production
+      MONGO_URI: mongodb://root:root@mongodb:27017/urlshortenerdb?authSource=admin
+    depends_on:
+      - mongodb
 
 volumes:
   mongo_data:

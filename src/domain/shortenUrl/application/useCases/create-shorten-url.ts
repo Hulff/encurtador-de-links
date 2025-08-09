@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ShortenUrlRepository } from "../repository/shorten-url-repository";
 import { ShortenUrl, ShortenUrlProps } from "../../enterprise/shortenUrl";
-import { nanoid } from "nanoid";
+import { v4 as uuidv4 } from "uuid"
 
 interface CreateShortenUrlUseCaseRequest {
     originalUrl: string;
@@ -14,8 +14,9 @@ export class CreateShortenUrlUseCase {
     constructor(private readonly shortenUrlRepository: ShortenUrlRepository) { }
 
     async execute(props: CreateShortenUrlUseCaseRequest): Promise<ShortenUrl> {
-        const shortenedUrl = nanoid(7);
-        
+        const shortenedUrl = uuidv4().slice(0, 8);
+
+
         const newEntity = ShortenUrl.create({
             originalUrl: props.originalUrl,
             shortId: shortenedUrl,

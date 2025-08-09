@@ -6,9 +6,8 @@ import { ShortenUrl, ShortenUrlSchema } from './mongo/schema/shorten-url.schema'
 
 @Module({
     imports: [
-        MongooseModule.forRoot(
-            'mongodb://root:root@localhost:27017/urlshortenerdb?authSource=admin',
-        ),
+
+        MongooseModule.forRoot(process.env.MONGO_URI || 'mongodb://localhost:27017/urlshortenerdb'),
         MongooseModule.forFeature([
             { name: ShortenUrl.name, schema: ShortenUrlSchema },
         ]),
