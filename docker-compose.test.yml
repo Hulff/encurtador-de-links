@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  mongo-test:
+    image: mongo:7
+    container_name: mongo-urlshortener-test
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27018:27017" # usa 27018 no host
+    tmpfs:
+      - /data/db   # banco descartável em memória
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ ping: 1 })"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
