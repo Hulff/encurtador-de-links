@@ -19,8 +19,7 @@ describe('GetUrlByShortenUrlUseCase', () => {
   it('should find a shortened URL by ID', async () => {
     const result = await useCase.execute({ shortenUrl: "abc123" });
     expect(result).toBeDefined();
-    expect(result.getId()).toBe("1");
-    expect(result.getOriginalUrl()).toBe("http://example.com");
+    expect(result.originalUrl).toBe("http://example.com");
   });
 });
 

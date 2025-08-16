@@ -16,7 +16,7 @@ describe('DeleteShortenUrlUseCase', () => {
     }))
   });
   it('should delete a shortened URL', async () => {
-    const result = await useCase.execute("1");
+    const result = await useCase.execute({ id: "1" });
     expect(result).toBe("deletado com sucesso");
     expect(repository.items.length).toBe(0);
   });
