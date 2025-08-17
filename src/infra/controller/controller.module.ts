@@ -4,7 +4,7 @@ import { CreateShortenUrlController } from './create-shorten-url.controller';
 import { CreateShortenUrlUseCase } from 'src/domain/shortenUrl/application/useCases/create-shorten-url';
 import { DeleteShortenUrlUseCase } from 'src/domain/shortenUrl/application/useCases/delete-shorten-url';
 import { FindShortenUrlByIdUseCase } from 'src/domain/shortenUrl/application/useCases/find-url-by-id';
-import { GetUrlByShortenUrlUseCase } from 'src/domain/shortenUrl/application/useCases/get-shroten-url';
+import { GetUrlByShortenUrlUseCase } from 'src/domain/shortenUrl/application/useCases/get-shorten-url';
 import { DeleteShortenUrlController } from './delete-shorten-url.controller';
 import { FindShortenUrlByIdController } from './find-shorten-url-by-id.controller';
 import { GetUrlByShortenUrlController } from './get-url.controller';

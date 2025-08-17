@@ -1,9 +1,5 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { ShortenUrlRepository } from "../repository/shorten-url-repository";
-import { ShortenUrl } from "../../enterprise/shortenUrl";
-import { error } from "console";
-
-
 
 interface GetShortenUrlUseCaseRequest {
     shortenUrl: string;
@@ -20,8 +16,9 @@ export class GetUrlByShortenUrlUseCase {
         const result = await this.shortenUrlRepository.getUrl(shortenUrl);
 
         if (!result) {
-            throw error("cant find url for this  shortened url")
+            throw new NotFoundException(`Cannot find URL for shortId "${shortenUrl}"`);
         }
+
         return { originalUrl: result.getOriginalUrl() };
     }
 }

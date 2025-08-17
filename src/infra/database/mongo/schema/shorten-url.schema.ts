@@ -6,7 +6,7 @@ export type ShortenUrlDocument = ShortenUrl & Document;
 
 export const ShortenUrlSchemaName = 'ShortenUrl';
 
-@Schema()
+@Schema({ collection: 'shortenUrls' })
 export class ShortenUrl {
     @Prop({ required: true })
     originalUrl: string;

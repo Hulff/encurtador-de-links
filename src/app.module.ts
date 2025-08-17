@@ -6,9 +6,11 @@ import { ControllersModule } from './infra/controller/controller.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: [`.env.${process.env.NODE_ENV}`], // escolhe o env pelo NODE_ENV
+      envFilePath: process.env.NODE_ENV
+        ? `.env.${process.env.NODE_ENV}`
+        : '.env', // carrega .env se NODE_ENV não existir
     }),
     ControllersModule
   ],
 })
-export class AppModule {}
+export class AppModule { }

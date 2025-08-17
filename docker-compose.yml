@@ -14,20 +14,18 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  app:
-    container_name: nest-urlshortener
-    build: .
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    command: npm run start:prod
-    environment:
-      NODE_ENV: production
-      MONGO_URI: mongodb://root:root@mongodb:27017/urlshortenerdb?authSource=admin
-    depends_on:
-      - mongodb
+  # app:
+  #   container_name: nest-urlshortener
+  #   build: .
+  #   restart: unless-stopped
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NODE_ENV: production
+  #     MONGO_URI: mongodb://root:root@mongodb:27017/urlshortenerdb?authSource=admin
+  #     PORT: 3000
+  #   depends_on:
+  #     - mongodb
 
 volumes:
   mongo_data:

@@ -1,7 +1,7 @@
 import { inMemoryShortenUrlRepository } from 'test/repository/in-memory-shorten-url-repository';
 import { ShortenUrl } from 'src/domain/shortenUrl/enterprise/shortenUrl';
 import { FindShortenUrlByIdUseCase } from '../find-url-by-id';
-import {  GetUrlByShortenUrlUseCase } from '../get-shroten-url';
+import { GetUrlByShortenUrlUseCase } from '../get-shorten-url';
 
 describe('GetUrlByShortenUrlUseCase', () => {
   let useCase: GetUrlByShortenUrlUseCase;
