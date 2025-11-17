@@ -14,9 +14,11 @@ export class GetUrlByShortenUrlUseCase {
 
     async execute({ shortenUrl }: GetShortenUrlUseCaseRequest): Promise<GetShortenUrlUseCaseResponse> {
         const result = await this.shortenUrlRepository.getUrl(shortenUrl);
-
         if (!result) {
             throw new NotFoundException(`Cannot find URL for shortId "${shortenUrl}"`);
+        } else {
+            result.incrementClicks();
+            await this.shortenUrlRepository.update(result.getId(), result);
         }
 
         return { originalUrl: result.getOriginalUrl() };

@@ -5,4 +5,5 @@ export abstract class ShortenUrlRepository {
     abstract delete(id:string): Promise<string>;
     abstract findById(id: string): Promise<ShortenUrl | null>;
     abstract getUrl(shortenedUrl: string): Promise<ShortenUrl | null>;
+    abstract update(id: string, entity: ShortenUrl): Promise<ShortenUrl>;
 }

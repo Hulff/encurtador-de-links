@@ -22,4 +22,11 @@ export class inMemoryShortenUrlRepository implements ShortenUrlRepository {
         const item = this.items.findIndex((e) => e.getShortId() === shortenedUrl);
         return Promise.resolve(item !== -1 ? this.items[item] : null);
     }
+    update(id: string, entity: ShortenUrl): Promise<ShortenUrl> {
+        const itemIndex = this.items.findIndex((e) => e.getId() === id);
+        if (itemIndex !== -1) {
+            this.items[itemIndex] = entity;
+        }
+        return Promise.resolve(entity);
+    }
 }

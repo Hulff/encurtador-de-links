@@ -13,7 +13,7 @@ export class ShortenUrl {
         private readonly shortId: string,
         private readonly createdAt: Date,
         private clicks: number,
-        private readonly id?: string,
+        private readonly id: string,
     ) { }
 
     getOriginalUrl(): string {
@@ -32,7 +32,7 @@ export class ShortenUrl {
         return this.clicks;
     }
 
-    getId(): string | undefined {
+    getId(): string {
         return this.id;
     }
 

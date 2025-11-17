@@ -20,6 +20,7 @@ describe('GetUrlByShortenUrlUseCase', () => {
     const result = await useCase.execute({ shortenUrl: "abc123" });
     expect(result).toBeDefined();
     expect(result.originalUrl).toBe("http://example.com");
+    expect(repository.items[0].getClicks()).toBe(1);
   });
 });
 

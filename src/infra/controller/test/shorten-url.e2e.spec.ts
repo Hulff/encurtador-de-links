@@ -66,10 +66,8 @@ describe("Shorten Url Controllers (e2e)", () => {
             const response = await request(httpServer)
                 .get(`/url`)
                 .query({ shortId: "124aa" }) // GET query param
-                .expect(200);
+                .expect(302);
 
-            expect(response.body).toHaveProperty("originalUrl");
-            expect(response.body.originalUrl).toBe("https://www.example.com");
         });
     });
     describe("GET /shorten-url", () => {

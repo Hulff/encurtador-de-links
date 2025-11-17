@@ -37,5 +37,20 @@ export class MongoShortenUrlRepository implements ShortenUrlRepository {
         const doc = await this.shortenUrlModel.findOne({ shortId: shortenedUrl });
         return doc ? ShortenUrlMapper.toDomain(doc) : null;
     }
+    async update(id:string,entity: ShortenUrl): Promise<ShortenUrl> {
+        const updated = await this.shortenUrlModel.findOneAndUpdate(
+            { id: id },
+            {
+                originalUrl: entity.getOriginalUrl(),
+                shortId: entity.getShortId(),
+                clicks: entity.getClicks(),
+            },
+            { new: true },
+        );
+        if (!updated) {
+            throw new Error('ShortenUrl not found');
+        }
+        return ShortenUrlMapper.toDomain(updated);
+    }
 
 }
